@@ -77,6 +77,7 @@ jobs:
             const fs = require('fs');
             const m = JSON.parse(fs.readFileSync('module.json', 'utf8'));
             m.version = '${{ steps.version.outputs.version }}';
+            m.manifest = 'https://raw.githubusercontent.com/${{ github.repository }}/main/module.json';
             m.download = 'https://github.com/${{ github.repository }}/releases/download/v${{ steps.version.outputs.version }}/${{ env.MODULE_ID }}.zip';
             fs.writeFileSync('module.json', JSON.stringify(m, null, 2));
           "

@@ -2,6 +2,19 @@
 
 All notable changes to this project are documented here.
 
+## [1.1.1] - 2025-02-14
+
+### Fixed
+
+- **Manifest install** — Added top-level `manifest` URL in `module.json` so Foundry reliably finds the manifest for install/update. Fixes “does not provide a download URL” on some setups.
+- **README** — Added jsDelivr CDN as fallback Manifest URL when raw GitHub fails.
+
+### Changed
+
+- Release workflow now sets `manifest` when updating `module.json` on main.
+
+---
+
 ## [1.1.0] - 2025-02-14
 
 ### Added

@@ -13,6 +13,12 @@ Foundry v13 only. Needs the [Star Wars FFG](https://github.com/StarWarsFoundryVT
    https://raw.githubusercontent.com/DukeVenator/swffg-data-compendiums/main/module.json
    ```
 
+   If that fails (e.g. “does not provide a download URL” or network error), try this CDN mirror:
+
+   ```
+   https://cdn.jsdelivr.net/gh/DukeVenator/swffg-data-compendiums@main/module.json
+   ```
+
 3. Enable **SWRPG Dice Helper Compendium** in your world’s module list.
 
 ## Why this exists
