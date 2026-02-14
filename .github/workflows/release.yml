@@ -69,6 +69,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Wait for release assets to be available
+        run: sleep 300
+        # GitHub can take ~5 min to serve release files; delay manifest update so the zip is downloadable.
+
       - name: Update module.json manifest on main
         run: |
           git fetch origin main

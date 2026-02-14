@@ -1,6 +1,6 @@
 {
   "name": "swrpg-dice-helper-compendium",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Journal compendium for FFG Star Wars dice helper (all skills). Foundry VTT v13+.",
   "private": true,
   "scripts": {
