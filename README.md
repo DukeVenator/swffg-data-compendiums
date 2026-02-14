@@ -4,6 +4,17 @@ Dice-helper data for **all skills** (FFG Star Wars) in a Journal compendium. Wor
 
 Foundry v13 only. Needs the [Star Wars FFG](https://github.com/StarWarsFoundryVTT/StarWarsFFG) system.
 
+## Install
+
+1. In Foundry, go to **Add-on Modules** → **Install Module**.
+2. Paste this **Manifest URL** and click **Install**:
+
+   ```
+   https://raw.githubusercontent.com/DukeVenator/swffg-data-compendiums/main/module.json
+   ```
+
+3. Enable **SWRPG Dice Helper Compendium** in your world’s module list.
+
 ## Why this exists
 
 Enhancements’ Dice Helper shows tips for spending advantage, threat, triumph, etc. The main module didn’t ship that text for every skill (copyright / size). This module is just the data in a compendium so you can pull it in and point Enhancements at it.

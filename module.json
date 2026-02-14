@@ -3,6 +3,7 @@
   "title": "SWRPG Dice Helper Compendium",
   "description": "Journal compendium containing dice-helper data (all skills) for use with FFG Star Wars Enhancements. Import the journal and set the Enhancements 'Dice Helper Data' setting to use it.",
   "version": "1.0.0",
+  "download": "https://github.com/DukeVenator/swffg-data-compendiums/releases/download/v1.0.0/swrpg-dice-helper-compendium.zip",
   "compatibility": {
     "minimum": 13,
     "verified": "13"

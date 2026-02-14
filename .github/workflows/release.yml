@@ -25,6 +25,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -66,3 +68,20 @@ jobs:
           draft: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update module.json manifest on main
+        run: |
+          git fetch origin main
+          git checkout main
+          node -e "
+            const fs = require('fs');
+            const m = JSON.parse(fs.readFileSync('module.json', 'utf8'));
+            m.version = '${{ steps.version.outputs.version }}';
+            m.download = 'https://github.com/${{ github.repository }}/releases/download/v${{ steps.version.outputs.version }}/${{ env.MODULE_ID }}.zip';
+            fs.writeFileSync('module.json', JSON.stringify(m, null, 2));
+          "
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add module.json
+          git diff --staged --quiet || git commit -m "chore: point manifest download to v${{ steps.version.outputs.version }}"
+          git push origin main
