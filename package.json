@@ -5,9 +5,12 @@
   "private": true,
   "scripts": {
     "build": "node scripts/build.mjs",
-    "release": "npm run build && node scripts/release.mjs"
+    "release": "npm run build && node scripts/release.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "devDependencies": {
+    "vitest": "^2.0.0",
     "@foundryvtt/foundryvtt-cli": "^3.0.0",
     "archiver": "^7.0.0"
   }
