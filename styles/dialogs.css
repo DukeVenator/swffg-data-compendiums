@@ -1,0 +1,67 @@
+/* Dice Helper compendium dialogs – theme-aware (light/dark) */
+
+/* Light theme (default) */
+.swrpg-dice-helper-dialog .window-content {
+  background: #f5f5f0;
+  color: #191813;
+}
+
+.swrpg-dice-helper-dialog .window-header {
+  background: #e8e4d9;
+  border-block-end: 1px solid #c9c7b8;
+}
+
+.swrpg-dice-helper-dialog .notes {
+  color: #666;
+}
+
+.swrpg-dice-helper-dialog code {
+  background: #e8e4d9;
+  color: #191813;
+}
+
+/* Dark theme: OS prefers dark */
+@media (prefers-color-scheme: dark) {
+  .swrpg-dice-helper-dialog .window-content {
+    background: #2a2a2e;
+    color: #e8e6e3;
+  }
+
+  .swrpg-dice-helper-dialog .window-header {
+    background: #1e1e22;
+    border-block-end: 1px solid #3a3a3e;
+  }
+
+  .swrpg-dice-helper-dialog .notes {
+    color: #9a9a9a;
+  }
+
+  .swrpg-dice-helper-dialog code {
+    background: #3a3a3e;
+    color: #e8e6e3;
+  }
+}
+
+/* Dark theme: Foundry body class (v13 / theme systems that add .dark or similar) */
+body.dark-theme .swrpg-dice-helper-dialog .window-content,
+body.theme-dark .swrpg-dice-helper-dialog .window-content {
+  background: #2a2a2e;
+  color: #e8e6e3;
+}
+
+body.dark-theme .swrpg-dice-helper-dialog .window-header,
+body.theme-dark .swrpg-dice-helper-dialog .window-header {
+  background: #1e1e22;
+  border-block-end: 1px solid #3a3a3e;
+}
+
+body.dark-theme .swrpg-dice-helper-dialog .notes,
+body.theme-dark .swrpg-dice-helper-dialog .notes {
+  color: #9a9a9a;
+}
+
+body.dark-theme .swrpg-dice-helper-dialog code,
+body.theme-dark .swrpg-dice-helper-dialog code {
+  background: #3a3a3e;
+  color: #e8e6e3;
+}

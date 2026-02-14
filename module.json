@@ -1,0 +1,30 @@
+{
+  "id": "swrpg-dice-helper-compendium",
+  "title": "SWRPG Dice Helper Compendium",
+  "description": "Journal compendium containing dice-helper data (all skills) for use with FFG Star Wars Enhancements. Import the journal and set the Enhancements 'Dice Helper Data' setting to use it.",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": 13,
+    "verified": "13"
+  },
+  "esmodules": ["scripts/setup-wizard.mjs"],
+  "styles": ["styles/dialogs.css"],
+  "relationships": {
+    "systems": [
+      {
+        "id": "starwarsffg",
+        "type": "system",
+        "manifest": "https://raw.githubusercontent.com/StarWarsFoundryVTT/StarWarsFFG/master/system.json"
+      }
+    ]
+  },
+  "packs": [
+    {
+      "name": "dice-helper",
+      "label": "Dice Helper (All Skills)",
+      "path": "packs/dice-helper",
+      "type": "JournalEntry",
+      "module": "swrpg-dice-helper-compendium"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+# Build and publish a Foundry VTT module release.
+# - Trigger: push a tag v* (e.g. v1.0.0) or run manually (workflow_dispatch).
+# - Builds compendium packs, zips the module, and creates a GitHub Release with the zip.
+
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g. 1.0.0). Leave empty to use package.json version.'
+        required: false
+
+env:
+  MODULE_ID: swrpg-dice-helper-compendium
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build compendium packs
+        run: npm run build
+
+      - name: Prepare release zip
+        run: |
+          mkdir -p release
+          cp module.json README.md release/
+          cp -r packs scripts styles docs release/ 2>/dev/null || true
+          cd release && zip -r "../${{ env.MODULE_ID }}.zip" . && cd ..
+
+      - name: Resolve version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ -n "${{ github.event.inputs.version }}" ]; then
+            echo "version=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+          elif [ "${{ github.event_name }}" = "push" ] && [[ "${{ github.ref }}" == refs/tags/v* ]]; then
+            echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+          else
+            echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.version.outputs.version }}
+          name: v${{ steps.version.outputs.version }}
+          files: ${{ env.MODULE_ID }}.zip
+          generate_release_notes: true
+          draft: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

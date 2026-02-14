@@ -1,0 +1,2 @@
+# LevelDB pack files must not be line-ending converted (Foundry v11+ packaging)
+packs/** binary
