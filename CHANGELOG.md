@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented here.
 
+## [1.1.2] - 2025-02-14
+
+### Fixed
+
+- **Release workflow** — Wait 5 minutes after creating the GitHub release before updating the manifest on main, so the release zip is available before the download URL is published.
+
+---
+
 ## [1.1.1] - 2025-02-14
 
 ### Fixed
