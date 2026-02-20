@@ -10,6 +10,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -24,10 +26,23 @@ jobs:
         run: npm ci
 
       - name: Run tests with coverage
-        run: npm run test:coverage
+        run: npm run test:coverage 2>&1 | tee coverage-log.txt
 
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
+      - name: Extract coverage and write badge
+        run: node scripts/coverage-from-text.mjs coverage-log.txt
+
+      - name: Upload coverage badge (for Shields.io)
+        uses: actions/upload-artifact@v4
         with:
-          files: coverage/lcov.info
-          fail_ci_if_error: false
+          name: coverage-badge
+          path: coverage-badge.json
+
+      - name: Update coverage badge on main
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add coverage-badge.json
+          git diff --staged --quiet || (git commit -m "chore: update coverage badge" && git push origin main)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

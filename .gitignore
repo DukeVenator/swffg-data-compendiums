@@ -1,6 +1,7 @@
 node_modules/
 build/
 dist/
-
+coverage/
+coverage-log.txt
 # Windows reserved device name (can appear when redirecting to nul)
 nul

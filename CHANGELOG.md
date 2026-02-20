@@ -2,6 +2,22 @@
 
 All notable changes to this project are documented here.
 
+## [1.1.4] - 2025-02-20
+
+### Added
+
+- **Test suite** — Vitest tests for data schema, build journal, pack content (extractPack round-trip), setup helpers (constants and logic with mocked `game`), and UI (template structure and CSS). Coverage enforced at 80% for `scripts/lib/`.
+- **CI** — Test workflow runs on every push and pull request to `main`/`master`; failures block merges. Release workflow runs tests with coverage before building and publishing.
+- **README badges** — Build status, latest release version, and test coverage via [Shields.io](https://shields.io/). Coverage percentage is parsed from the Test workflow shell output and written to `coverage-badge.json` (Shields endpoint badge); the workflow commits it on `main` so the badge stays up to date.
+- **Setup helpers** — Extracted `scripts/lib/setup-helpers.mjs` with constants and pure functions (`isJournalCreatedByUs`, `setEnhancementsJournal`) so setup-wizard behaviour is unit-testable without Foundry.
+
+### Changed
+
+- **Release** — Version bump and tagged release `v1.1.4`. No changes to module behaviour or content.
+- **Coverage badge** — Replaced Codecov with a script that parses Vitest coverage from the Actions log and writes a Shields.io endpoint JSON; job summary shows a coverage table and the README badge displays the current percentage.
+
+---
+
 ## [1.1.3] - 2025-02-20
 
 ### Fixed
