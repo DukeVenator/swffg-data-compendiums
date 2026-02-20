@@ -1,6 +1,6 @@
 # SWRPG Dice Helper Compendium
 
-Dice-helper data for **all skills** (FFG Star Wars) in a Journal compendium. Works with [FFG Star Wars Enhancements](https://github.com/wrycu/StarWarsFFG-Enhancements)—when you click “Help me spend results” on a roll, it’ll have suggestions for every skill, not just combat.
+Dice-helper data for **all skills** (FFG Star Wars) in a Journal compendium. Works with [FFG Star Wars Enhancements](https://github.com/wrycu/StarWarsFFG-Enhancements) when you click “Help me spend results” on a roll, it’ll have suggestions for every skill, not just combat.
 
 Foundry v13 only. Needs the [Star Wars FFG](https://github.com/StarWarsFoundryVTT/StarWarsFFG) system.
 

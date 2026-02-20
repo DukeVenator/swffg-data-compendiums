@@ -18,11 +18,19 @@ export function buildJournalEntry(data, options = {}) {
   const pageId = options.pageId ?? randomId();
   const entryId = options.entryId ?? randomId();
 
+  // Foundry CLI compilePack requires _key in format "!<collection>!<id>" or the document is skipped.
+  const _key = `!journal!${entryId}`;
+
+  // Embedded documents need _key in format "!<collection>.<sub>!<parentId>.<id>" for compilePack.
+  const pageKey = `!journal.pages!${entryId}.${pageId}`;
+
   return {
+    _key,
     _id: entryId,
     name: "Dice Helper (All Skills)",
     pages: [
       {
+        _key: pageKey,
         _id: pageId,
         name: "dice_helper",
         type: "text",

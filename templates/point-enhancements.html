@@ -1,0 +1,20 @@
+<form class="flexcol">
+  <p>Set <strong>FFG Star Wars Enhancements</strong> "Dice Helper Data" to one of your journals:</p>
+  {{#unless enhancementsActive}}
+  <p class="notes">Enable FFG Star Wars Enhancements first.</p>
+  {{/unless}}
+  {{#unless journals.length}}
+  <p class="notes">No journals in this world. Import the Dice Helper from the Compendium first.</p>
+  {{/unless}}
+  <div class="form-group">
+    {{#each journals}}
+    <button type="button" class="journal-choice" data-journal-name="{{this.name}}" data-key="{{this.key}}">
+      <i class="{{#if this.isCurrent}}fas fa-check{{else}}fas fa-book{{/if}}"></i>
+      {{this.name}}{{#if this.isCurrent}} (current){{/if}}
+    </button>
+    {{/each}}
+  </div>
+  <footer class="sheet-footer flexrow">
+    <button type="button" name="cancel"><i class="fas fa-times"></i> Cancel</button>
+  </footer>
+</form>

@@ -2,6 +2,27 @@
 
 All notable changes to this project are documented here.
 
+## [1.1.3] - 2025-02-20
+
+### Fixed
+
+- **Settings menu (init crash)** — Replaced custom Dialog class with a proper `FormApplication` subclass for the "Point Enhancements at journal" menu so `game.settings.registerMenu` accepts it on Foundry v13. Fixes: "You must provide a menu type that is a FormApplication or ApplicationV2 instance or subclass".
+- **Empty compendium** — Build now adds the required `_key` field to the journal and its page so `@foundryvtt/foundryvtt-cli` `compilePack` includes documents in the LevelDB pack. The compendium now contains the Dice Helper journal after `npm run build`.
+- **Import error in v13** — Setup wizard now uses `game.journal.importFromCompendium(pack, id, updateData)` instead of `pack.importDocument(id)` so the imported document is correctly treated as a JournalEntry. Fixes: "You may not import a String Document into ... Compendium which contains JournalEntry Documents".
+
+### Added
+
+- **Own journal detection** — Journals created by this module are flagged (`createdByModule`). The wizard only considers setup "done" when that journal exists, so a same-named journal from another module no longer skips the wizard incorrectly.
+- **Reset setup state** — New world setting (Module Settings) to clear setup state and the module flag from journals so the first-time wizard can show again (e.g. after fixing an empty compendium and reinstalling).
+- **Templates in release** — The release zip now includes the `templates/` folder so the Point Enhancements settings menu works when installed from the manifest.
+- **Console logging** — Build script and setup wizard log progress and decisions to the console (prefixed `[build]` / `[swrpg-dice-helper-compendium]`) to help debug empty compendium or wizard not showing.
+
+### Changed
+
+- First-time setup dialog shows a note when the compendium has zero documents, with instructions to run `npm run build` and use Reset setup state.
+
+---
+
 ## [1.1.2] - 2025-02-14
 
 ### Fixed

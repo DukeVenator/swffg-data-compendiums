@@ -24,6 +24,7 @@ const RELEASE_DIRS = [
   ["packs", "packs"],
   ["scripts", "scripts"],
   ["styles", "styles"],
+  ["templates", "templates"],
   ["docs", "docs"]
 ];
 
