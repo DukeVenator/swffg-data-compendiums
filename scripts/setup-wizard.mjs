@@ -4,29 +4,21 @@
  * Can also set the FFG Star Wars Enhancements "Dice Helper Data" setting to point at the journal.
  */
 
-const MODULE_ID = "swrpg-dice-helper-compendium";
-const PACK_ID = `${MODULE_ID}.dice-helper`;
-const DEFAULT_JOURNAL_NAME = "dice_helper";
-const ENHANCEMENTS_MODULE_ID = "ffg-star-wars-enhancements";
-const ENHANCEMENTS_SETTING_KEY = "dice-helper-data";
-
-/** Flag we set on journals we create so we can tell ours from another module's same-named journal. */
-const CREATED_BY_MODULE_FLAG = "createdByModule";
-
-function isJournalCreatedByUs(journal) {
-  return journal?.getFlag(MODULE_ID, CREATED_BY_MODULE_FLAG) === true;
-}
+import {
+  MODULE_ID,
+  PACK_ID,
+  DEFAULT_JOURNAL_NAME,
+  ENHANCEMENTS_MODULE_ID,
+  CREATED_BY_MODULE_FLAG,
+  DIALOG_TITLE,
+  BUTTON_LABEL_SETUP,
+  BUTTON_LABEL_SKIP,
+  isJournalCreatedByUs,
+  setEnhancementsJournal as setEnhancementsJournalWithGame
+} from "./lib/setup-helpers.mjs";
 
 function setEnhancementsJournal(journalName) {
-  if (typeof game.modules.get(ENHANCEMENTS_MODULE_ID)?.active !== "boolean" || !game.modules.get(ENHANCEMENTS_MODULE_ID).active) {
-    return false;
-  }
-  try {
-    game.settings.set(ENHANCEMENTS_MODULE_ID, ENHANCEMENTS_SETTING_KEY, journalName);
-    return true;
-  } catch (_) {
-    return false;
-  }
+  return setEnhancementsJournalWithGame(game, journalName);
 }
 
 Hooks.once("init", () => {
@@ -187,7 +179,7 @@ Hooks.once("ready", async () => {
   console.log("[swrpg-dice-helper-compendium] ready: showing first-time setup Dialog");
   new Dialog(
     {
-      title: "Dice Helper – First-time setup",
+      title: DIALOG_TITLE,
       content: `
         <p>Create the <strong>Dice Helper</strong> journal in this world so
         <strong>FFG Star Wars Enhancements</strong> can show dice result spending tips for all skills.</p>
@@ -199,7 +191,7 @@ Hooks.once("ready", async () => {
       buttons: {
         setup: {
           icon: "<i class=\"fas fa-check\"></i>",
-          label: "Set up",
+          label: BUTTON_LABEL_SETUP,
           callback: async () => {
             console.log("[swrpg-dice-helper-compendium] setup button: starting import");
             try {
@@ -236,7 +228,7 @@ Hooks.once("ready", async () => {
         },
         skip: {
           icon: "<i class=\"fas fa-times\"></i>",
-          label: "Skip",
+          label: BUTTON_LABEL_SKIP,
           callback: () => {
             game.settings.set(MODULE_ID, "setup-done", true);
             ui.notifications.info("You can import the Dice Helper journal from the Compendium tab anytime.");

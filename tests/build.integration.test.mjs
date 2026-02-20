@@ -3,7 +3,7 @@
  */
 import { describe, it, expect } from "vitest";
 import { execSync } from "child_process";
-import { existsSync, readdirSync } from "fs";
+import { existsSync, readdirSync, rmSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 
@@ -13,6 +13,9 @@ const PACK_OUTPUT = join(ROOT, "packs", "dice-helper");
 
 describe("build integration", () => {
   it("npm run build produces packs/dice-helper with LevelDB files", () => {
+    if (existsSync(PACK_OUTPUT)) {
+      rmSync(PACK_OUTPUT, { recursive: true, force: true });
+    }
     execSync("npm run build", { encoding: "utf-8", cwd: ROOT, stdio: "pipe" });
     expect(existsSync(PACK_OUTPUT)).toBe(true);
     const files = readdirSync(PACK_OUTPUT);

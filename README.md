@@ -1,5 +1,9 @@
 # SWRPG Dice Helper Compendium
 
+[![Test](https://img.shields.io/github/actions/workflow/status/DukeVenator/swffg-data-compendiums/test.yml?branch=main&label=tests)](https://github.com/DukeVenator/swffg-data-compendiums/actions/workflows/test.yml)
+[![Release](https://img.shields.io/github/v/release/DukeVenator/swffg-data-compendiums)](https://github.com/DukeVenator/swffg-data-compendiums/releases)
+[![Coverage](https://img.shields.io/codecov/c/github/DukeVenator/swffg-data-compendiums)](https://codecov.io/gh/DukeVenator/swffg-data-compendiums)
+
 Dice-helper data for **all skills** (FFG Star Wars) in a Journal compendium. Works with [FFG Star Wars Enhancements](https://github.com/wrycu/StarWarsFFG-Enhancements) when you click “Help me spend results” on a roll, it’ll have suggestions for every skill, not just combat.
 
 Foundry v13 only. Needs the [Star Wars FFG](https://github.com/StarWarsFoundryVTT/StarWarsFFG) system.
